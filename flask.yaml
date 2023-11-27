@@ -61,14 +61,14 @@
 
     - name: Run Flask app
       command: nohup python3 app.py &
-      async: 40
+      async: 60
       poll: 0
       args:
         chdir: "{{ app_directory }}/repository"
       become_user: centos
 
-    - name: Stop Flask app after 40 seconds
-      shell: "sleep 40 && pkill -f 'python3 app.py'"
+    - name: Stop Flask app after 60 seconds
+      shell: "sleep 60 && pkill -f 'python3 app.py'"
       args:
         warn: false
         
