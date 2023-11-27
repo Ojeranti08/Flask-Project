@@ -1,6 +1,6 @@
 ---
 - name: Install Maven on Centos
-  hosts: node4
+  hosts: Fnode1
   become: yes  # Run tasks with sudo privileges
 
   tasks:
