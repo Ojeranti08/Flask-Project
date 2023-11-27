@@ -22,7 +22,7 @@
     - name: Clone GitHub repository
       git:
         repo: "{{ git_repo_url }}"
-        dest: "{{ app_directory }}/repository"
+        dest: "{{ app_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Update repositories and install Python
@@ -44,12 +44,12 @@
     - name: Create a virtual environment
       command: virtualenv -p python3 venv
       args:
-        chdir: "{{ app_directory }}/repository"
+        chdir: "{{ app_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Activate the virtual environment
       shell:
-       cmd: "source {{ app_directory }}/repository/venv/bin/activate && python --version"
+       cmd: "source {{ app_directory }}/home/centos/Flask-Project/repository/venv/bin/activate && python --version"
       become_user: centos
 
 
@@ -64,11 +64,11 @@
       async: 60
       poll: 0
       args:
-        chdir: "{{ app_directory }}/repository"
+        chdir: "{{ app_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Stop Flask app after 60 seconds
-      shell: #pid=$(ps aux | grep 'python3 app.py' | awk '{print $2}')
+      shell: #pid=$(ps aux | grep 'python3 flask.py' | awk '{print $2}')
              #kill -15 $pid
           "sleep 60 && pkill -f 'python3 flask.py'"
       args:
