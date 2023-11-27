@@ -1,6 +1,6 @@
 ---
 - name: Install HTTP Server
-  hosts: Fnode1
+  hosts: g1
   become: yes
 
   tasks:
