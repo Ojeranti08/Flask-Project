@@ -68,7 +68,9 @@
       become_user: centos
 
     - name: Stop Flask app after 60 seconds
-      shell: "sleep 60 && pkill -f 'python3 app.py'"
+      shell: pid=$(ps aux | grep 'python3 app.py' | awk '{print $2}')
+             kill -15 $pid
+          #"sleep 60 && pkill -f 'python3 app.py'"
       args:
         warn: false
         
