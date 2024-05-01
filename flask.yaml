@@ -14,7 +14,7 @@
 
     - name: Create Flask-Project directory if it doesn't exist
       ansible.builtin.file:
-        path: "{{ app_directory }}"
+        path: "{{ flask_directory }}"
         state: directory
         mode: '0755'
       become_user: centos
@@ -22,7 +22,7 @@
     - name: Clone GitHub repository
       git:
         repo: "{{ git_repo_url }}"
-        dest: "{{ app_directory }}/home/centos/Flask-Project/repository"
+        dest: "{{ flask_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Update repositories and install Python
@@ -44,12 +44,12 @@
     - name: Create a virtual environment
       command: virtualenv -p python3 venv
       args:
-        chdir: "{{ app_directory }}/home/centos/Flask-Project/repository"
+        chdir: "{{ flask_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Activate the virtual environment
       shell:
-       cmd: "source {{ app_directory }}/home/centos/Flask-Project/repository/venv/bin/activate && python --version"
+       cmd: "source {{ flask_directory }}/home/centos/Flask-Project/repository/venv/bin/activate && python --version"
       become_user: centos
 
 
@@ -64,7 +64,7 @@
       async: 60
       poll: 0
       args:
-        chdir: "{{ app_directory }}/home/centos/Flask-Project/repository"
+        chdir: "{{ flask_directory }}/home/centos/Flask-Project/repository"
       become_user: centos
 
     - name: Stop Flask app after 60 seconds
