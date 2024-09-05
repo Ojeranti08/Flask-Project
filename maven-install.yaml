@@ -1,3 +1,4 @@
+/*
 ---
 - name: Install Maven on Centos
   hosts: g1
@@ -41,3 +42,4 @@
       command: bash -c "source /etc/profile.d/maven.sh"
       become: yes
 ...
+*/
